@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Анимация человека с помощью Canvas</title>
+</head>
+<body>
+<canvas id="myCanvas" width="300" height="200"></canvas>
+<script>
+const canvas = document.getElementById('myCanvas');
+const ctx = canvas.getContext('2d');
+
+let x = 0;
+let y = 100;
+
+function drawPerson() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height); // Очистить холст
+  ctx.beginPath();
+  ctx.arc(x + 20, y, 10, 0, 2 * Math.PI); // Голова
+  ctx.fillStyle = 'red';
+  ctx.fill();
+  ctx.fillRect(x, y + 10, 40, 40); // Тело
+}
+
+function animate() {
+  x += 2; // Скорость движения
+  if (x > canvas.width) {
+    x = -40; // Начать заново
+  }
+  drawPerson();
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+</body>
+</html>
